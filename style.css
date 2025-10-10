@@ -1,0 +1,499 @@
+/* style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background: 
+        linear-gradient(
+            rgba(255, 182, 193, 0.7), 
+            rgba(255, 192, 203, 0.5)
+        ),
+        url('background.jpg') center/cover no-repeat fixed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Nagłówek */
+.header {
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.header-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 5.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 
+        0 0 20px rgba(255, 105, 180, 0.8),
+        0 0 40px rgba(255, 105, 180, 0.6),
+        0 0 60px rgba(255, 105, 180, 0.4);
+    margin-bottom: 1.5rem;
+    animation: glow 3s ease-in-out infinite alternate;
+    letter-spacing: 2px;
+}
+
+.description {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+    animation: fadeInUp 1.5s ease-out;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+}
+
+/* Przycisk dołączania */
+.join-container {
+    margin-top: 2rem;
+    animation: fadeInUp 1.5s ease-out 0.3s both;
+}
+
+.join-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #5865F2, #7289da);
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 8px 25px rgba(88, 101, 242, 0.4),
+        0 2px 10px rgba(88, 101, 242, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.join-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.join-btn:hover::before {
+    left: 100%;
+}
+
+.join-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 35px rgba(88, 101, 242, 0.6),
+        0 4px 15px rgba(88, 101, 242, 0.4);
+    background: linear-gradient(135deg, #7289da, #5865F2);
+}
+
+.join-btn:active {
+    transform: translateY(-1px);
+}
+
+.join-btn i {
+    font-size: 1.4rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Animowane kółka w tle */
+.background-circles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 182, 193, 0.4) 0%,
+        rgba(255, 105, 180, 0.2) 50%,
+        transparent 70%
+    );
+    animation: float 6s ease-in-out infinite;
+}
+
+.circle-1 {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.circle-2 {
+    width: 200px;
+    height: 200px;
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.circle-3 {
+    width: 250px;
+    height: 250px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+}
+
+/* Kontener na płatki */
+#petals-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Pojedynczy płatek */
+.petal {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 182, 193, 0.7) 50%,
+        rgba(255, 105, 180, 0.4) 100%
+    );
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(45deg);
+    opacity: 0.8;
+    animation: fall linear forwards;
+    filter: drop-shadow(0 0 5px rgba(255, 105, 180, 0.5));
+}
+
+/* Animacje */
+@keyframes glow {
+    0% {
+        text-shadow: 
+            0 0 20px rgba(255, 105, 180, 0.8),
+            0 0 40px rgba(255, 105, 180, 0.6),
+            0 0 60px rgba(255, 105, 180, 0.4);
+    }
+    100% {
+        text-shadow: 
+            0 0 30px rgba(255, 105, 180, 1),
+            0 0 50px rgba(255, 105, 180, 0.8),
+            0 0 70px rgba(255, 105, 180, 0.6);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.05);
+    }
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-200px) rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .header-title {
+        font-size: 4rem;
+    }
+    
+    .description {
+        font-size: 1.3rem;
+    }
+    
+    .circle-1 {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .circle-2 {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .circle-3 {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .join-btn {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-title {
+        font-size: 3rem;
+    }
+    
+    .description {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+    
+    .join-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+    
+    .join-btn i {
+        font-size: 1.2rem;
+    }
+}
+
+/* Efekt paralaksy dla tła */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(8px);
+    z-index: -1;
+    transform: scale(1.1);
+}
+
+/* Sekcja kart */
+.cards-section {
+    position: relative;
+    z-index: 10;
+    padding: 4rem 2rem;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+/* Pojedyncza karta */
+.card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 8px 32px rgba(255, 105, 180, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.4s ease;
+    animation: fadeInUp 1s ease-out;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 
+        0 15px 40px rgba(255, 105, 180, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+/* Ikona karty */
+.card-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.4s ease;
+}
+
+.card:hover .card-icon {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.card-icon i {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 10px rgba(255, 105, 180, 0.5);
+}
+
+/* Tytuł karty */
+.card-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Opis karty */
+.card-description {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    font-weight: 400;
+}
+
+/* Dekoracje kart */
+.card-decoration {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 100px;
+    height: 100px;
+    opacity: 0.1;
+    transition: all 0.4s ease;
+}
+
+.card:hover .card-decoration {
+    opacity: 0.2;
+    transform: scale(1.1);
+}
+
+.decoration-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 182, 193, 0.8), transparent 70%);
+}
+
+/* Animacje dla kart */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .cards-section {
+        padding: 2rem 1rem;
+    }
+    
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .card-title {
+        font-size: 1.8rem;
+    }
+    
+    .card-description {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cards-section {
+        padding: 1rem 0.5rem;
+    }
+    
+    .card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .card-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .card-icon i {
+        font-size: 1.5rem;
+    }
+}
